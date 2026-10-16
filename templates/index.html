@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Taste &amp; Recommendation Mining | Apriori Association Rules</title>
+  <meta name="description" content="Discover your next favorite book using the Apriori algorithm and association rule mining on 53,000 readers and 6 million ratings.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Ambient Decorative Background Glows -->
+  <div class="ambient-glow glow-lavender" aria-hidden="true"></div>
+  <div class="ambient-glow glow-coral" aria-hidden="true"></div>
+  <div class="ambient-glow glow-sky" aria-hidden="true"></div>
+  <div class="ambient-glow glow-mint" aria-hidden="true"></div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <span>📖</span>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">Bookworm</span>
+          <span class="brand-badge">Apriori Engine</span>
+        </div>
+      </div>
+      <div class="header-stats" id="headerStats">
+        <div class="stat-chip chip-lavender">
+          <span class="stat-label">Readers Analysed</span>
+          <strong id="statUsers">52,959</strong>
+        </div>
+        <div class="stat-chip chip-sky">
+          <span class="stat-label">Curated Books</span>
+          <strong id="statBooks">500</strong>
+        </div>
+        <div class="stat-chip chip-mint">
+          <span class="stat-label">Association Rules</span>
+          <strong id="statRules">83,314</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Vibrant Gradient Header -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="sparkle-icon">✨</span>
+          <span>Market Basket Analysis in Action</span>
+        </div>
+        <h1 class="hero-heading">
+          Find Your Next <span class="gradient-text">Favourite Book</span>
+        </h1>
+        <p class="hero-description">
+          Build your personal taste bookshelf by selecting stories you loved. Our Apriori data mining algorithm searches through 
+          <strong>83,314 discovered reading affinity rules</strong> to recommend books that readers with your exact taste devoured next.
+        </p>
+
+        <!-- Quick Demo Presets -->
+        <div class="hero-presets-wrapper">
+          <span class="presets-label">⚡ Explore a Reading Taste Preset:</span>
+          <div class="preset-btn-group">
+            <button type="button" class="preset-btn preset-coral" id="presetHarryPotter">
+              <span class="btn-icon">⚡</span>
+              <span>Harry Potter Series</span>
+            </button>
+            <button type="button" class="preset-btn preset-sky" id="presetHungerGames">
+              <span class="btn-icon">🏹</span>
+              <span>Dystopian Hits</span>
+            </button>
+            <button type="button" class="preset-btn preset-lavender" id="presetVampire">
+              <span class="btn-icon">🧛</span>
+              <span>Urban Fantasy</span>
+            </button>
+            <button type="button" class="preset-btn preset-mint" id="presetClassics">
+              <span class="btn-icon">🏛️</span>
+              <span>Literary Classics</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Decorative Card -->
+      <div class="hero-art-card" aria-hidden="true">
+        <div class="art-badge-top">Top Rule Match</div>
+        <div class="art-book-spine">
+          <div class="art-spine-title">Apriori Mined Association</div>
+          <div class="art-spine-stars">★★★★★</div>
+        </div>
+        <div class="art-metric-chips">
+          <span class="art-chip-lift">🔥 31.6x Lift</span>
+          <span class="art-chip-conf">🎯 94.3% Conf</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Layout -->
+  <main class="main-container">
+
+    <!-- Left Column: Searchable Catalog Panel -->
+    <aside class="catalog-panel" aria-label="Book Catalog">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <div class="panel-icon-circle icon-lavender">📚</div>
+          <h2 class="panel-title">
+            <span>Book Catalog</span>
+            <span class="count-badge" id="catalogCount">500 books</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          id="catalogSearchInput" 
+          class="search-input" 
+          placeholder="Search by title or author name..."
+          autocomplete="off"
+        >
+        <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search" style="display: none;">&times;</button>
+      </div>
+
+      <div class="catalog-scroll" id="catalogList" role="list">
+        <!-- Dynamically rendered catalog items -->
+      </div>
+    </aside>
+
+    <!-- Right Column: Bookshelf & Recommendations -->
+    <section class="workspace-panel">
+
+      <!-- User Bookshelf Tray -->
+      <div class="bookshelf-card">
+        <div class="bookshelf-header">
+          <div class="bookshelf-title-group">
+            <div class="panel-icon-circle icon-coral">⭐</div>
+            <h2 class="bookshelf-title">
+              <span>My Bookshelf (Books I Loved)</span>
+              <span class="count-badge badge-amber" id="shelfCount">0 selected</span>
+            </h2>
+          </div>
+          <div class="bookshelf-actions">
+            <button type="button" id="clearShelfBtn" class="clear-btn" style="display: none;">
+              <span>Clear Bookshelf</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bookshelf-tray" id="bookshelfTray">
+          <div class="empty-tray-msg" id="emptyTrayMsg">
+            <span class="hand-wave">👈</span>
+            <span>Click <strong>+ Add</strong> on books from the left catalog to build your taste basket</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendations Container -->
+      <div class="recs-container">
+        <div class="recs-header">
+          <div class="recs-title-group">
+            <div class="panel-icon-circle icon-mint">✨</div>
+            <h2 class="recs-title">
+              <span>Recommended For You</span>
+              <span class="count-badge badge-emerald" id="recsCount">0 found</span>
+            </h2>
+          </div>
+          <span class="recs-sort-badge">
+            <span class="sort-dot"></span> Ranked by Lift &amp; Confidence
+          </span>
+        </div>
+
+        <div id="recsContent">
+          <!-- Dynamic Recommendation Cards or Empty State -->
+          <div class="empty-state" id="initialEmptyState">
+            <div class="empty-state-art">
+              <div class="floating-bubble bubble-1">📚</div>
+              <div class="floating-bubble bubble-2">✨</div>
+              <div class="floating-bubble bubble-3">💡</div>
+            </div>
+            <h3>Your Personalized Bookshelf is Empty</h3>
+            <p>
+              Select books you've enjoyed from the 500-book catalog or click one of the 
+              <strong>Reading Presets</strong> above to activate the Apriori association engine.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <p class="footer-subtext">
+          Powered by NumPy &amp; Pandas Vectorized Apriori &bull; Benchmark Dataset: <em>goodbooks-10k</em> (CC BY-SA 4.0)
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
