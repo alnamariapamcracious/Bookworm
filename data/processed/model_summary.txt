@@ -1,0 +1,81 @@
+===========================================================================
+BOOK TASTE & RECOMMENDATION MINING - APRIORI MODEL (NUMPY/PANDAS)
+===========================================================================
+Configuration Settings:
+  - Minimum Support:            1.00% (0.01)
+  - Minimum Confidence:         30.00% (0.3)
+  - Maximum Itemset Length:     3
+  - Minimum Recommendation Lift:1.0
+===========================================================================
+
+Dataset Dimensions:
+  - Total Transactions (Users): 52,959
+  - Target Book Catalog:        500 books
+  - Total Interaction Records:  1,688,003
+
+Frequent Itemsets Discovered: 55,868
+  - 1-item combinations: 500
+  - 2-item combinations: 15,738
+  - 3-item combinations: 39,630
+
+Association Rules Generated:
+  - Candidate Single-Book Rules Evaluated: 150,366
+  - Retained Usable Recommendation Rules:   83,314
+
+===========================================================================
+TOP 5 HIGHEST LIFT RECOMMENDATION RULES
+===========================================================================
+Rule #1:
+  IF user likes:  Living Dead in Dallas (Sookie Stackhouse, #2) | Dead to the World (Sookie Stackhouse, #4)
+  RECOMMEND:      Club Dead (Sookie Stackhouse, #3) (by Charlaine Harris)
+  Metrics:        Lift=31.58 | Confidence=94.32% | Support=0.0242
+Rule #2:
+  IF user likes:  Dead Until Dark (Sookie Stackhouse, #1) | Club Dead (Sookie Stackhouse, #3)
+  RECOMMEND:      Living Dead in Dallas (Sookie Stackhouse, #2) (by Charlaine Harris)
+  Metrics:        Lift=30.59 | Confidence=92.43% | Support=0.0224
+Rule #3:
+  IF user likes:  Eclipse (Twilight, #3) | Club Dead (Sookie Stackhouse, #3)
+  RECOMMEND:      Living Dead in Dallas (Sookie Stackhouse, #2) (by Charlaine Harris)
+  Metrics:        Lift=30.54 | Confidence=92.27% | Support=0.0101
+Rule #4:
+  IF user likes:  Shadow Kiss (Vampire Academy, #3) | Spirit Bound (Vampire Academy, #5)
+  RECOMMEND:      Last Sacrifice (Vampire Academy, #6) (by Richelle Mead)
+  Metrics:        Lift=30.52 | Confidence=86.11% | Support=0.0199
+Rule #5:
+  IF user likes:  Dead to the World (Sookie Stackhouse, #4) | Club Dead (Sookie Stackhouse, #3)
+  RECOMMEND:      Living Dead in Dallas (Sookie Stackhouse, #2) (by Charlaine Harris)
+  Metrics:        Lift=30.46 | Confidence=92.01% | Support=0.0242
+
+===========================================================================
+TOP 5 HIGHEST CONFIDENCE RECOMMENDATION RULES
+===========================================================================
+Rule #35916:
+  IF user likes:  Twilight (Twilight, #1) | Catching Fire (The Hunger Games, #2)
+  RECOMMEND:      The Hunger Games (The Hunger Games, #1) (by Suzanne Collins)
+  Metrics:        Confidence=94.63% | Lift=2.65 | Support=0.0563
+Rule #13445:
+  IF user likes:  Harry Potter and the Order of the Phoenix (Harry Potter, #5) | The Tales of Beedle the Bard
+  RECOMMEND:      Harry Potter and the Half-Blood Prince (Harry Potter, #6) (by J.K. Rowling, Mary GrandPré)
+  Metrics:        Confidence=94.61% | Lift=3.75 | Support=0.0189
+Rule #36028:
+  IF user likes:  Twilight (Twilight, #1) | Mockingjay (The Hunger Games, #3)
+  RECOMMEND:      The Hunger Games (The Hunger Games, #1) (by Suzanne Collins)
+  Metrics:        Confidence=94.43% | Lift=2.64 | Support=0.0461
+Rule #14664:
+  IF user likes:  Harry Potter and the Chamber of Secrets (Harry Potter, #2) | Harry Potter and the Goblet of Fire (Harry Potter, #4)
+  RECOMMEND:      Harry Potter and the Prisoner of Azkaban (Harry Potter, #3) (by J.K. Rowling, Mary GrandPré, Rufus Beck)
+  Metrics:        Confidence=94.41% | Lift=3.62 | Support=0.1922
+Rule #14686:
+  IF user likes:  Harry Potter and the Chamber of Secrets (Harry Potter, #2) | Harry Potter and the Half-Blood Prince (Harry Potter, #6)
+  RECOMMEND:      Harry Potter and the Prisoner of Azkaban (Harry Potter, #3) (by J.K. Rowling, Mary GrandPré, Rufus Beck)
+  Metrics:        Confidence=94.37% | Lift=3.62 | Support=0.1840
+
+===========================================================================
+FINAL MODEL EXECUTION SUMMARY
+===========================================================================
+  - Transactions (Users) Analyzed:        52,959
+  - Books in Itemset Catalog:             500
+  - Total Frequent Itemsets:              55,868
+  - Usable Single-Book Rules:             83,314
+  - Total Execution Runtime:              344.16 seconds
+===========================================================================

@@ -1,0 +1,43 @@
+======================================================================
+BOOK TASTE & RECOMMENDATION MINING - DATA PREPARATION
+======================================================================
+
+[Step 1/6] Loading raw CSV files from data/raw/...
+  - Loaded books.csv: 10,000 rows
+  - Loaded ratings.csv: 5,976,479 rows
+
+[Step 2/6] Validating schema, data types, and integrity...
+  - Missing values in core rating fields: 0
+  - Invalid rating values (outside 1-5): 0
+  - Duplicate (user_id, book_id) pairs found: 0
+  - Orphan ratings (book_id not in books.csv): 0
+  - Cleaned ratings count: 5,976,479
+  - Saving cleaned ratings to: C:\Users\asus\Documents\Book_Taste_recommendation\data\processed\cleaned_ratings.csv
+
+[Step 3/6] Filtering for positive taste preferences (rating >= 4)...
+  - Positive ratings (>= 4): 4,122,111 (68.97%)
+
+[Step 4/6] Identifying Top 500 most frequently positively rated books...
+  - Selected 500 books with positive user count range: [1,450 to 18,926]
+  - Ratings retained for Top 500 books: 1,688,248
+  - Saving selected books metadata to: C:\Users\asus\Documents\Book_Taste_recommendation\data\processed\selected_books.csv
+
+[Step 5/6] Filtering users with at least 2 positively rated books in Top 500...
+  - Distinct users with >= 2 positive ratings in Top 500: 52,959
+  - Final transactions count (interactions): 1,688,003
+  - Saving transactions to: C:\Users\asus\Documents\Book_Taste_recommendation\data\processed\transactions.csv
+
+[Step 6/6] Computing final transaction statistics...
+
+======================================================================
+FINAL TRANSACTION DATASET SUMMARY STATISTICS
+======================================================================
+  - Retained Unique Users (Transactions): 52,959
+  - Retained Unique Books:                500 (out of 500 target)
+  - Total User-Book Interactions:         1,688,003
+  - Average Basket Size:                  31.87 books
+  - Median Basket Size:                   30 books
+  - Min Basket Size:                      2 books
+  - Max Basket Size:                      157 books
+  - Interaction Matrix Density:           6.37% (Sparsity: 93.63%)
+======================================================================

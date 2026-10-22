@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Taste &amp; Recommendation Mining | Apriori Association Rules</title>
-  <meta name="description" content="Discover your next favorite book using the Apriori algorithm and association rule mining on 53,000 readers and 6 million ratings.">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="description"
+    content="Discover your next favorite book using the Apriori algorithm and association rule mining on 53,000 readers and 6 million ratings.">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
   <!-- Ambient Decorative Background Glows -->
@@ -56,8 +59,10 @@
           Find Your Next <span class="gradient-text">Favourite Book</span>
         </h1>
         <p class="hero-description">
-          Build your personal taste bookshelf by selecting stories you loved. Our Apriori data mining algorithm searches through 
-          <strong>83,314 discovered reading affinity rules</strong> to recommend books that readers with your exact taste devoured next.
+          Build your personal taste bookshelf by selecting stories you loved. Our Apriori data mining algorithm searches
+          through
+          <strong>83,314 discovered reading affinity rules</strong> to recommend books that readers with your exact
+          taste devoured next.
         </p>
 
         <!-- Quick Demo Presets -->
@@ -116,14 +121,10 @@
 
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input 
-          type="text" 
-          id="catalogSearchInput" 
-          class="search-input" 
-          placeholder="Search by title or author name..."
-          autocomplete="off"
-        >
-        <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search" style="display: none;">&times;</button>
+        <input type="text" id="catalogSearchInput" class="search-input" placeholder="Search by title or author name..."
+          autocomplete="off">
+        <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search"
+          style="display: none;">&times;</button>
       </div>
 
       <div class="catalog-scroll" id="catalogList" role="list">
@@ -184,7 +185,7 @@
             </div>
             <h3>Your Personalized Bookshelf is Empty</h3>
             <p>
-              Select books you've enjoyed from the 500-book catalog or click one of the 
+              Select books you've enjoyed from the 500-book catalog or click one of the
               <strong>Reading Presets</strong> above to activate the Apriori association engine.
             </p>
           </div>
@@ -200,13 +201,15 @@
     <div class="footer-container">
       <div class="footer-content">
         <p class="footer-subtext">
-          Powered by NumPy &amp; Pandas Vectorized Apriori &bull; Benchmark Dataset: <em>goodbooks-10k</em> (CC BY-SA 4.0)
+          Powered by NumPy &amp; Pandas Vectorized Apriori &bull; Benchmark Dataset: <em>goodbooks-10k</em> (CC BY-SA
+          4.0)
         </p>
       </div>
     </div>
   </footer>
 
   <!-- Application Logic -->
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="/js/app.js"></script>
 </body>
+
 </html>

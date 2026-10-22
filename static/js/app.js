@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.id = `catalog-item-${book.book_id}`;
 
       // Safe cover URL with placeholder fallback
-      const coverUrl = book.small_image_url || book.image_url || "/static/img/book_placeholder.svg";
+      const coverUrl = book.small_image_url || book.image_url || "/img/book_placeholder.svg";
 
       item.innerHTML = `
         <img 
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alt="${escapeHtml(book.title)}" 
           class="catalog-thumb" 
           loading="lazy"
-          onerror="this.onerror=null; this.src='/static/img/book_placeholder.svg';"
+          onerror="this.onerror=null; this.src='/img/book_placeholder.svg';"
         >
         <div class="catalog-info">
           <div class="catalog-title" title="${escapeHtml(book.title)}">${escapeHtml(book.title)}</div>
@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "rec-card";
 
-      const coverUrl = rec.image_url || rec.small_image_url || "/static/img/book_placeholder.svg";
+      const coverUrl = rec.image_url || rec.small_image_url || "/img/book_placeholder.svg";
       const confidencePct = (rec.confidence * 100).toFixed(1);
       const liftVal = rec.lift.toFixed(1);
       const supportPct = (rec.support * 100).toFixed(2);
@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alt="${escapeHtml(rec.title)}" 
             class="rec-cover" 
             loading="lazy"
-            onerror="this.onerror=null; this.src='/static/img/book_placeholder.svg';"
+            onerror="this.onerror=null; this.src='/img/book_placeholder.svg';"
           >
           <div class="rec-info">
             <h3 class="rec-title" title="${escapeHtml(rec.title)}">${escapeHtml(rec.title)}</h3>

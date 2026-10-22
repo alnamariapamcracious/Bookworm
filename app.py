@@ -11,18 +11,39 @@ Serves the web user interface and REST API endpoints:
 - GET  /api/stats     : Data Mining Model Metrics & Parameters
 """
 
+
 import os
 import math
 import itertools
 from collections import defaultdict
 import pandas as pd
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 app = Flask(__name__)
 
-# Path definitions
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROCESSED_DIR = os.path.join(PROJECT_ROOT, "data", "processed")
+
+BOOKS_PATH = os.path.join(PROCESSED_DIR, "selected_books.csv")
+RULES_PATH = os.path.join(PROCESSED_DIR, "association_rules.csv")
+SUMMARY_PATH = os.path.join(PROCESSED_DIR, "model_summary.txt")
+
+
+@app.route("/css/<path:filename>")
+def public_css(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, "public", "css"), filename)
+
+
+@app.route("/js/<path:filename>")
+def public_js(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, "public", "js"), filename)
+
+
+@app.route("/img/<path:filename>")
+def public_img(filename):
+    return send_from_directory(os.path.join(PROJECT_ROOT, "public", "img"), filename)
+# Path definitions
+
 BOOKS_PATH = os.path.join(PROCESSED_DIR, "selected_books.csv")
 RULES_PATH = os.path.join(PROCESSED_DIR, "association_rules.csv")
 SUMMARY_PATH = os.path.join(PROCESSED_DIR, "model_summary.txt")
@@ -71,8 +92,8 @@ def load_knowledge_base():
             "average_rating": round(float(row.get("average_rating", 0.0)), 2),
             "ratings_count": int(row.get("ratings_count", 0)),
             "positive_user_count": int(row.get("positive_user_count", 0)),
-            "image_url": clean_val(row.get("image_url"), "/static/img/book_placeholder.svg"),
-            "small_image_url": clean_val(row.get("small_image_url"), "/static/img/book_placeholder.svg"),
+            "image_url": clean_val(row.get("image_url"), "/img/book_placeholder.svg"),
+            "small_image_url": clean_val(row.get("small_image_url"), "/img/book_placeholder.svg"),
         }
         CATALOG[b_id] = book_info
         BOOKS_LIST.append(book_info)
